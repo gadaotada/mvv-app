@@ -1,0 +1,8 @@
+{
+  "files": [],
+  "references": [
+    { "path": "./apps/core" },
+    { "path": "./apps/site" },
+    { "path": "./apps/admin" }
+  ]
+}
