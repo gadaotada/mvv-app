@@ -4,7 +4,7 @@
   "private": true,
   "packageManager": "npm@11.12.1",
   "engines": {
-    "node": "25.9.x"
+    "node": "26.x.x"
   },
   "description": "",
   "workspaces": [
@@ -19,7 +19,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/node": "^25.9.5",
+    "@types/node": "^26",
     "typescript": "^7.0.2"
   }
 }
