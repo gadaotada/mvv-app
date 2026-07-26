@@ -3,6 +3,11 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
+  "scripts": {
+    "build": "tsc -b",
+    "test": "npm run build && node --test dist/**/*.test.js",
+    "test:http": "npm run build && node --test dist/http/http.integration.test.js"
+  },
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {

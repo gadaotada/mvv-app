@@ -2,17 +2,27 @@
   "name": "mvv-app",
   "version": "1.0.0",
   "private": true,
+  "packageManager": "npm@11.12.1",
+  "engines": {
+    "node": "25.9.x"
+  },
   "description": "",
   "workspaces": [
     "apps/*"
   ],
   "scripts": {
-    "test": "npm run test --workspaces --if-present"
+    "bench:site": "node scripts/bench-site.mjs",
+    "test:http": "npm run test:http --workspace @mvv/core",
+    "test": "tsc -b --force && npm run test --workspaces --if-present"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/node": "^25.9.5",
     "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "fastify": "^5.10.0"
   }
 }
