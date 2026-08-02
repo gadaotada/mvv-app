@@ -6,6 +6,7 @@
  */
 declare namespace Temporal {
   interface DurationLike {
+    readonly milliseconds?: number;
     readonly minutes?: number;
   }
 

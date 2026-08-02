@@ -114,7 +114,11 @@ it('aborts active cleanup before a timed-out shutdown settles and reports reject
 });
 
 it('force-closes a hanging active request at the shutdown deadline', async () => {
-  const server = createServer((_request, _response) => undefined);
+  let markRequestStarted!: () => void;
+  const requestStarted = new Promise<void>((resolve) => {
+    markRequestStarted = resolve;
+  });
+  const server = createServer((_request, _response) => markRequestStarted());
   await new Promise<void>((resolve, reject) => {
     server.once('error', reject);
     server.listen(0, '127.0.0.1', () => resolve());
@@ -130,6 +134,8 @@ it('force-closes a hanging active request at the shutdown deadline', async () =>
       resolve();
     });
   });
+  await requestStarted;
+
   const closed = new Promise<void>((resolve) => socket.once('close', () => resolve()));
   const shutdown = createGracefulShutdown(server, { timeoutMs: 20 });
 
