@@ -56,6 +56,23 @@
 - Prefer small focused functions over middleware-style hidden mutation.
 - Do not introduce a dependency when the Node.js standard library provides a clear, maintainable solution.
 
+## Core package boundaries
+
+- Import core functionality through its public category subpaths: `@mvv/core/config`, `@mvv/core/http`, `@mvv/core/server`, `@mvv/core/sqlite`, `@mvv/core/template`, and `@mvv/core/utils`.
+- Import shared types with `import type` from `@mvv/core/types`.
+- Put general shared type declarations in `apps/core/src/types/core.d.ts`.
+- Reuse runtime guards from `apps/core/src/utils/global.ts`; do not recreate equivalent local helpers.
+- Keep domain-specific helpers close to their owning module.
+
+## SQLite
+
+- Use `@mvv/core/sqlite` rather than importing `node:sqlite` directly from applications.
+- Use tagged SQL methods for values originating outside trusted static code.
+- Reserve `database.exec()` for trusted schema, migration, and pragma statements.
+- Keep SQLite transaction callbacks synchronous.
+- Prefer `using` for deterministic database cleanup.
+- Add dedicated row mappers when converting SQLite rows into domain types.
+
 ## HTTP core expectations
 
 - Every request path must end the response, reject into the error handler, or be terminated by a bounded deadline.
