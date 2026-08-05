@@ -1,6 +1,8 @@
 import { createServer } from 'node:http';
 
-import { createEnvironment, createGracefulShutdown, createHttpHandler, Router, send } from '@mvv/core';
+import { createEnvironment } from '@mvv/core/config';
+import { createHttpHandler, Router, send } from '@mvv/core/http';
+import { createGracefulShutdown } from '@mvv/core/server';
 
 const env = createEnvironment();
 const host = env.string('SITE_HOST', { fallback: '127.0.0.1' });
