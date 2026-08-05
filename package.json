@@ -12,7 +12,6 @@
   ],
   "scripts": {
     "bench:site": "node scripts/bench-site.mjs",
-    "test:http": "npm run test:http --workspace @mvv/core",
     "test": "tsc -b --force && npm run test --workspaces --if-present"
   },
   "keywords": [],
