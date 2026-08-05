@@ -1,7 +1,7 @@
 import { createServer } from 'node:http';
 
 import { createEnvironment } from '@mvv/core/config';
-import { createHttpHandler, Router, send } from '@mvv/core/http';
+import { createHttpHandler, createStaticAssetHandler, Router, send } from '@mvv/core/http';
 import { createGracefulShutdown } from '@mvv/core/server';
 
 const env = createEnvironment();
@@ -18,6 +18,13 @@ router.get('/health', async ({ response }) => {
     contentType: 'application/json; charset=utf-8',
   });
 });
+
+router.get(
+  '/*assetPath',
+  createStaticAssetHandler({
+    publicPath: new URL('../public/', import.meta.url),
+  }),
+);
 
 export const server = createServer(
   {
