@@ -1,7 +1,6 @@
-type SafeParseOk<T = unknown> = { ok: true; value: T };
-type SafeParseFail = { ok: false; error: unknown };
+import type { Result } from '@mvv/core/types';
 
-export type SafeParseResult<T = unknown> = SafeParseOk<T> | SafeParseFail;
+export type SafeParseResult<T = unknown> = Result<T, unknown>;
 export function safeJsonParse<T = unknown>(value: string): SafeParseResult<T> {
   try {
     return { ok: true, value: JSON.parse(value) as T };
@@ -10,10 +9,7 @@ export function safeJsonParse<T = unknown>(value: string): SafeParseResult<T> {
   }
 }
 
-type SafeStringifyOk<T extends string | undefined = string> = { ok: true; value: T };
-type SafeStringifyFail = { ok: false; error: unknown };
-
-export type SafeStringifyResult<T extends string | undefined = string> = SafeStringifyOk<T> | SafeStringifyFail;
+export type SafeStringifyResult<T extends string | undefined = string> = Result<T, unknown>;
 export function safeJsonStringify(value: unknown, nullish: true): SafeStringifyResult<string | undefined>;
 export function safeJsonStringify(value: unknown, nullish?: false): SafeStringifyResult<string>;
 export function safeJsonStringify(value: unknown, nullish = false): SafeStringifyResult<string | undefined> {

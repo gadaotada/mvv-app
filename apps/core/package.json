@@ -34,6 +34,9 @@
       "types": "./dist/template/index.d.ts",
       "import": "./dist/template/index.js"
     },
+    "./types": {
+      "types": "./src/types/core.d.ts"
+    },
     "./utils": {
       "types": "./dist/utils/index.d.ts",
       "import": "./dist/utils/index.js"
