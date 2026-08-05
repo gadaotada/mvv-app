@@ -26,6 +26,10 @@
       "types": "./dist/server/index.d.ts",
       "import": "./dist/server/index.js"
     },
+    "./sqlite": {
+      "types": "./dist/sqlite/index.d.ts",
+      "import": "./dist/sqlite/index.js"
+    },
     "./template": {
       "types": "./dist/template/index.d.ts",
       "import": "./dist/template/index.js"
